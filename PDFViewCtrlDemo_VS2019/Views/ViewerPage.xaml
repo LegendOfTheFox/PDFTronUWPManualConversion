@@ -1,0 +1,192 @@
+﻿<Page
+    x:Class="PDFViewCtrlDemo_Windows10.Views.ViewerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PDFViewCtrlDemo_Windows10.Views"
+    xmlns:converters="using:PDFViewCtrlDemo_Windows10.ViewModels.Common.Converters"
+    xmlns:common="using:PDFViewCtrlDemo_Windows10.ViewModels.Common"
+    xmlns:toolControls="using:pdftron.PDF.Tools.Controls"
+    xmlns:toolControlResources="using:pdftron.PDF.Tools.Controls.Resources"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Page.Resources>
+    
+    <Page.TopAppBar>
+        <CommandBar IsEnabled="{Binding IsModalDialogOpen, Converter={StaticResource InverseBooleanConverter}}" x:Name="ViewerCommandBad"
+                    HorizontalContentAlignment="Stretch">
+            <CommandBar.Content>
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <AppBarButton x:Name="GoBackButton" Label="GoBack" Icon="Back" Command="{Binding GoBackCommand}"
+                                  IsCompact="{Binding ElementName=ViewerCommandBad, Path=IsOpen, Converter={StaticResource InverseBooleanConverter}}"/>
+                    <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid DataContext="{Binding FindTextViewModel}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsIndeterminate="False" 
+                                             Minimum="0" Maximum="100" Value="{Binding SearchProgress}" Foreground="#FFDDDD00"/>
+                                <TextBox x:Name="SearchTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="0"
+                                         Text="{Binding SearchTerm, Mode=TwoWay}" 
+                                         common:TextChangedCommand.Command="{Binding TextChangedCommand}"
+                                         KeyUp="SearchTextBox_KeyUp"
+                                         />
+                            </Grid>
+
+                            <Button x:Name="FocusStealer" Opacity="0" IsHitTestVisible="False"/>
+                            <AppBarButton Grid.Column="1" Icon="Find" Label="Search" Command="{Binding FindCommand}"
+                                          IsCompact="{Binding ElementName=ViewerCommandBad, Path=IsOpen, Converter={StaticResource InverseBooleanConverter}}"/>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </CommandBar.Content>
+
+            <!--<AppBarButton Label="Magnify" Icon="ZoomIn" Command="{Binding MagnifyCommand}"
+                          IsEnabled="{Binding IsConverting, Converter={StaticResource InverseBooleanConverter}}"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>-->
+            <AppBarButton Label="Search" Icon="Find" Command="{Binding FindTextCommand}" 
+                          IsEnabled="{Binding IsConverting, Converter={StaticResource InverseBooleanConverter}}"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+            <AppBarButton Label="Edit" Icon="Edit" Command="{Binding EditCommand}"
+                          IsEnabled="{Binding IsConverting, Converter={StaticResource InverseBooleanConverter}}"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+            <AppBarButton Label="Page Layout" Icon="TwoPage" x:Name="PageLayoutButton"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <AppBarButton.Flyout>
+                    <Flyout common:FlyoutHelpers.Parent="{Binding ElementName=PageLayoutButton}" 
+                            common:FlyoutHelpers.IsOpen="{Binding IsPageLayoutFlyoutOpen, Mode=TwoWay}">
+                        <StackPanel Orientation="Vertical">
+                            <Button HorizontalAlignment="Stretch" Content="Single Page" Command="{Binding PageLayoutCommand}" CommandParameter="sp"/>
+                            <Button HorizontalAlignment="Stretch" Content="Continuous" Command="{Binding PageLayoutCommand}" CommandParameter="scon"/>
+                            <Button HorizontalAlignment="Stretch" Content="Facing" Command="{Binding PageLayoutCommand}" CommandParameter="f"/>
+                            <Button HorizontalAlignment="Stretch" Content="Facing Continuous" Command="{Binding PageLayoutCommand}" CommandParameter="fcon"/>
+                            <Button HorizontalAlignment="Stretch" Content="Facing Cover" Command="{Binding PageLayoutCommand}" CommandParameter="fcov"/>
+                            <Button HorizontalAlignment="Stretch" Content="Facing Continuous Cover" Command="{Binding PageLayoutCommand}" CommandParameter="fconcov"/>  
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton Label="Controls" Icon="Bookmarks" x:Name="SummaryButton"
+                          IsEnabled="{Binding IsConverting, Converter={StaticResource InverseBooleanConverter}}"
+                          Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <AppBarButton.Flyout>
+                    <Flyout common:FlyoutHelpers.Parent="{Binding ElementName=SummaryButton}" 
+                            common:FlyoutHelpers.IsOpen="{Binding IsSummaryFlyoutOpen, Mode=TwoWay}">
+                        <StackPanel Orientation="Vertical">
+                            <Button HorizontalAlignment="Stretch" Content="Outline" Command="{Binding SummaryCommand}" CommandParameter="outline"/>
+                            <Button HorizontalAlignment="Stretch" Content="Annotations" Command="{Binding SummaryCommand}" CommandParameter="annotationlist"/>
+                            <Button HorizontalAlignment="Stretch" Content="User Bookmarks" Command="{Binding SummaryCommand}" CommandParameter="userbookmarks"/>
+                            <Button HorizontalAlignment="Stretch" Content="Thumbnails" Command="{Binding SummaryCommand}" CommandParameter="thumbnails"/>
+                            <Button HorizontalAlignment="Stretch" Content="Reflow" Command="{Binding SummaryCommand}" CommandParameter="reflow"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Save" Icon="Save" Command="{Binding SaveCommand}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"
+                              IsEnabled="{Binding IsConverting, Converter={StaticResource InverseBooleanConverter}}"
+                              Visibility="{Binding ShowFindText, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+            </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border x:Name="PDFViewCtrlBorder">
+            <toolControls:MagnifyingHost x:Name="MagnifyingHost" IsCenterMovable="True"
+                                         MagnifiedElement="{Binding MagnifyingControl}" MagnifyingToolbarDataContext="{Binding MagnifyingToolbarViewModel}">
+                <toolControls:MagnifyingHost.MagnifyingElement>
+                    <Grid>
+                        <toolControlResources:PDFViewCtrlNavButtonHost HostedPDFViewCtrl="{Binding PDFViewCtrl}" x:Name="PDFViewCtrlNavButtonHost"/>
+                        <Border HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50" Child="{Binding PageNumberIndicator}"/>
+                    </Grid>
+                </toolControls:MagnifyingHost.MagnifyingElement>
+            </toolControls:MagnifyingHost>
+        </Border>
+
+        <Grid x:Name="ModalGrid" Background="Transparent" Visibility="{Binding IsModalDialogOpen, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid x:Name="ModalGrayoutGrid" Background="{ThemeResource ContentDialogDimmingThemeBrush}" 
+                  Visibility="{Binding IsModalGrayout, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+        
+        <Grid x:Name="OverlayGrid">
+
+            <Grid x:Name="TapOverlayGrid" Background="Transparent" common:PointerPressedCommand.Command="{Binding TapOverlayPressedCommand}"
+                  Visibility="{Binding IsTapDismissableDialogOpen, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Child="{Binding AnnotationToolbar}" 
+                    Visibility="{Binding ShowAnnotToolbar, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <Border HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+                <Grid>
+                    <Border x:Name="OutlineBorder" HorizontalAlignment="Right" VerticalAlignment="Stretch" MaxWidth="400" Width="400" Child="{Binding Outline}"
+                    Visibility="{Binding ShowOutline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <Border x:Name="AnnotationListBorder" HorizontalAlignment="Right" VerticalAlignment="Stretch" MaxWidth="400" Width="400" Child="{Binding AnnotationList}"
+                    Visibility="{Binding ShowAnnotationList, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <Border x:Name="UserBookmarksBorder" HorizontalAlignment="Right" VerticalAlignment="Stretch" MaxWidth="400" Width="400" Child="{Binding UserBookmarks}"
+                    Visibility="{Binding ShowUserBookmarks, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </Grid>
+            </Border>
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Child="{Binding ThumbnailViewer}" Background="Gray"
+                    Visibility="{Binding ShowThumbnails, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"/>
+
+            <Grid Background="Gray"
+                  Visibility="{Binding ShowReflow, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <CommandBar Grid.Row="0" x:Name="ReflowCommandBar">
+                    <CommandBar.Content>
+                        <AppBarButton x:Name="CloseReflowButton" Label="Close" Icon="Back" Command="{Binding GoBackCommand}"
+                                      IsCompact="{Binding ElementName=ReflowCommandBar, Path=IsOpen, Converter={StaticResource InverseBooleanConverter}}"/>
+                    </CommandBar.Content>
+                </CommandBar>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Text="{Binding ReflowPageString}" IsHitTestVisible="False"/>
+                <Border Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Child="{Binding ReflowView}" />
+            </Grid>
+
+
+        </Grid>
+
+        <Grid IsHitTestVisible="False" DataContext="{Binding FindTextViewModel}" HorizontalAlignment="Center" VerticalAlignment="Top"
+              Background="#22444444">
+            <TextBlock Foreground="Red" FontSize="18" Text="{Binding ErrorText}"/>
+        </Grid>
+              
+        
+        <Grid x:Name="TextSearchPrevNextGrid" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 60" 
+              DataContext="{Binding FindTextViewModel}" Visibility="{Binding EnablePrevNext, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <AppBarButton Icon="Back" Background="#44AAAAAA" IsCompact="False" Label="Previous" 
+                          Command="{Binding PrevNextCommand}" CommandParameter="prev" />
+
+            <AppBarButton Grid.Column="2" Icon="Forward" Background="#44AAAAAA" IsCompact="False" Label="Next"
+                          Command="{Binding PrevNextCommand}" CommandParameter="next"/>
+        </Grid>
+    </Grid>
+</Page>

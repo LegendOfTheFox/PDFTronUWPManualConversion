@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{4766DA38-7D9A-4875-9C73-B3283D6E6C5A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDFNetUWPSamples_VS2019</RootNamespace>
+    <AssemblyName>PDFNetUWPSamples_VS2019</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>PDFNetUWPSamples_VS2019_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <RuntimeIdentifiers>win10-arm64;win10-arm64-aot;win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <PackageCertificateThumbprint>BB1C2BED449AF4EF889F9AC9356E467223184ACD</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="TestFiles\grayscale.tif" />
+    <Content Include="TestFiles\hindi_sample_utf16le.txt" />
+    <Content Include="TestFiles\multipage.tif" />
+    <Content Include="TestFiles\my_stream.txt" />
+    <Content Include="TestFiles\pdfnet.gif" />
+    <Content Include="TestFiles\pdftron.bmp" />
+    <Content Include="TestFiles\peppers.jpg" />
+    <Content Include="TestFiles\signature.jpg" />
+    <Content Include="TestFiles\simple-emf.emf" />
+    <Content Include="TestFiles\simple-text.txt" />
+    <Content Include="TestFiles\simple-webpage.html" />
+    <None Include="PDFNetUWPSamples_VS2019_TemporaryKey.pfx" />
+    <None Include="project.json" />
+    <Content Include="TestFiles\BusinessCardTemplate.pdf" />
+    <Content Include="TestFiles\credit card numbers.pdf" />
+    <Content Include="TestFiles\dice.u3d" />
+    <Content Include="TestFiles\doc_to_sign.pdf" />
+    <Content Include="TestFiles\fish.pdf" />
+    <Content Include="TestFiles\font.ttf" />
+    <Content Include="TestFiles\form1.pdf" />
+    <Content Include="TestFiles\form1_annots.xfdf" />
+    <Content Include="TestFiles\form1_data.fdf" />
+    <Content Include="TestFiles\form1_data.xfdf" />
+    <Content Include="TestFiles\imagemask.dat" />
+    <Content Include="TestFiles\lorem_ipsum.pdf" />
+    <Content Include="TestFiles\Misc-Fixed.pfa" />
+    <Content Include="TestFiles\newsletter.pdf" />
+    <Content Include="TestFiles\newsletter.xod" />
+    <Content Include="TestFiles\numbered.pdf" />
+    <Content Include="TestFiles\palm.jp2" />
+    <Content Include="TestFiles\pdftron.pfx" />
+    <Content Include="TestFiles\simple-excel_2007.xlsx" />
+    <Content Include="TestFiles\simple-outlook.msg" />
+    <Content Include="TestFiles\simple-powerpoint_2007.pptx" />
+    <Content Include="TestFiles\simple-publisher.pub" />
+    <Content Include="TestFiles\simple-rtf.rtf" />
+    <Content Include="TestFiles\simple-visio.vsd" />
+    <Content Include="TestFiles\simple-webpage.mht" />
+    <Content Include="TestFiles\simple-word_2007.docx" />
+    <Content Include="TestFiles\simple-xps.xps" />
+    <Content Include="TestFiles\tagged.pdf" />
+    <Content Include="TestFiles\tiger.pdf" />
+    <Content Include="TestFiles\TigerText.pdf" />
+    <Content Include="TestFiles\US061222892-a.pdf" />
+    <Content Include="TestFiles\diff_doc_1.pdf" />
+    <Content Include="TestFiles\diff_doc_2.pdf" />
+    <Content Include="TestFiles\tiger_withApprovalField.pdf" />
+    <Content Include="TestFiles\tiger_withApprovalField_certified.pdf" />
+    <Content Include="TestFiles\tiger_withApprovalField_certified_approved.pdf" />
+    <Content Include="Resources\pdftron_layout_resources.plugin" />
+    <Content Include="Resources\pdftron_exotic_font_resources.plugin" />
+    <Content Include="Resources\pdftron_smart_substitution.plugin" />
+    <Content Include="TestFiles\factsheet_Arabic.docx" />
+    <Content Include="TestFiles\Fishermen.docx" />
+    <Content Include="TestFiles\NotoSans_with_hindi.ttf" />
+    <Content Include="TestFiles\the_rime_of_the_ancient_mariner.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\AutoScrollHelper.cs" />
+    <Compile Include="Common\ItemClickCommand.cs" />
+    <Compile Include="Common\NavigationService.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SelectionCommand.cs" />
+    <Compile Include="Common\ViewModelBase.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\AddImageTest.cs" />
+    <Compile Include="Samples\AnnotationTest.cs" />
+    <Compile Include="Samples\BookmarkTest.cs" />
+    <Compile Include="Samples\ContentReplacerTest.cs" />
+    <Compile Include="Samples\ConvertTest.cs" />
+    <Compile Include="Samples\DigitalSignaturesTest.cs" />
+    <Compile Include="Samples\ElementBuilderTest.cs" />
+    <Compile Include="Samples\ElementEditTest.cs" />
+    <Compile Include="Samples\ElementReaderAdvTest.cs" />
+    <Compile Include="Samples\ElementReaderTest.cs" />
+    <Compile Include="Samples\EncTest.cs" />
+    <Compile Include="Samples\FDFTest.cs" />
+    <Compile Include="Samples\ImageExtractTest.cs" />
+    <Compile Include="Samples\ImpositionTest.cs" />
+    <Compile Include="Samples\InteractiveFormsTest.cs" />
+    <Compile Include="Samples\JBIG2Test.cs" />
+    <Compile Include="Samples\OptimizerTest.cs" />
+    <Compile Include="Samples\PageLabelsTest.cs" />
+    <Compile Include="Samples\PatternTest.cs" />
+    <Compile Include="Samples\PDFATest.cs" />
+    <Compile Include="Samples\PDFDocLockTest.cs" />
+    <Compile Include="Samples\PDFDocMemoryTest.cs" />
+    <Compile Include="Samples\PDFDrawTest.cs" />
+    <Compile Include="Samples\PDFLayersTest.cs" />
+    <Compile Include="Samples\PDFPackageTest.cs" />
+    <Compile Include="Samples\PDFPageTest.cs" />
+    <Compile Include="Samples\PDFRedactTest.cs" />
+    <Compile Include="Samples\OfficeToPDFTest.cs" />
+    <Compile Include="Samples\RectTest.cs" />
+    <Compile Include="Samples\SDFTest.cs" />
+    <Compile Include="Samples\StamperTest.cs" />
+    <Compile Include="Samples\TextExtractTest.cs" />
+    <Compile Include="Samples\TextSearchTest.cs" />
+    <Compile Include="Samples\U3DTest.cs" />
+    <Compile Include="Samples\UndoRedoTest.cs" />
+    <Compile Include="Samples\UnicodeWriteTest.cs" />
+    <Compile Include="Samples\VisualComparisionTest.cs" />
+    <Compile Include="ViewModels\Sample.cs" />
+    <Compile Include="ViewModels\SampleSelectionViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\WideLogo.scale-100.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="TestFiles\butterfly.png" />
+    <Content Include="TestFiles\dice.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.11</Version>
+    </PackageReference>
+    <PackageReference Include="PDFTron.UWP">
+      <Version>9.0.0.77725</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

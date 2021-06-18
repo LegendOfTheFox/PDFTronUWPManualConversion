@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="60e6ab98-89f2-4917-a7f9-4104aef16f41" Publisher="CN=Robson" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="60e6ab98-89f2-4917-a7f9-4104aef16f41" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>CompleteReader_Windows10</DisplayName>
+    <PublisherDisplayName>Demo by PDFTron Systems Inc.</PublisherDisplayName>
+    <Logo>Assets\CompleteReaderStoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="CompleteReader_Windows10.App">
+      <uap:VisualElements DisplayName="CompleteReader" Square150x150Logo="Assets\CompleteReaderMedTile.png" Square44x44Logo="Assets\CompleteReaderAppList.png" Description="CompleteReader_Windows10" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\CompleteReaderWideTile.png" ShortName="CompleteReader" Square71x71Logo="Assets/CompleteReaderSmallTile.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\CompleteReaderSplashScreen.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".pdf">
+            <uap:Logo>Assets/Icon.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.pdf</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
